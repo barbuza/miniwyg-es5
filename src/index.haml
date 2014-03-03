@@ -1,0 +1,19 @@
+!!!5
+%html
+  %head
+    %meta( charset="utf-8" )
+    %link( rel="stylesheet" href="miniwyg.css" )
+    %script( src="traceur-runtime.js" )
+  %body
+    %form
+      %textarea#editor( name="html" )
+        %h1 новая версия
+        %h2 нашего замечательного редактора
+        %p красивые панельки
+        %p вставка картинок между параграфами
+        %p подсветка <b>текущего</b> <i>форматирования</i>
+        %figure( contenteditable="false" )
+          %img( src="http://pit.dirty.ru/lepro/2/2014/02/27/203130-76cf19e7865e75c4ba4b6360afc0e9b7.jpg" )
+          %figcaption( contenteditable="true" ) подписи к картинкам
+        %p ребята из <b>medium</b> весьма озадачены
+    %script( src="miniwyg.js" )

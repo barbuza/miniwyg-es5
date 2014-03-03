@@ -1,0 +1,200 @@
+@font-face {
+    font-family: 'medium';
+    src: url('fonts/medium-icons.eot');
+    src: url('fonts/medium-icons.eot?#iefix') format('embedded-opentype'),
+         url('fonts/medium-icons.woff') format('woff'),
+         url('fonts/medium-icons.ttf') format('truetype'),
+         url('fonts/medium-icons.svg#medium-iconsicons') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.miniwyg
+  position relative
+  margin-left -22px
+
+  .bottom
+    border-bottom 1px dashed #ccc
+    margin-left 22px
+
+  .plus-sign
+    font-size 1px
+    line-height 20px
+    text-align center
+    width 20px
+    height 20px
+    font-family medium
+    cursor pointer
+    transition opacity .1s, font-size .1s, color .2s
+    position absolute
+    opacity 0
+    z-index 100
+    color #888
+    &:before
+      content "\f101"
+      // content "\f137"
+    &.show
+      opacity 1
+      font-size 20px
+    &:hover
+      color green
+
+  .editor
+    position relative
+    background #fff
+    padding-bottom 8px
+    z-index 100
+    font-size 18px
+    line-height 20px
+    padding-left 22px
+    overflow hidden
+    // background #eee
+
+    figure
+      padding 0
+      display flex
+      justify-content center
+      align-items center
+      flex-direction column
+      margin 2em
+      &.align-left
+        float left
+        display block
+        margin 2em 2em 2em 0
+      img
+        box-shadow 0 0 0 3px rgba(#57ad68, 0)
+        transition box-shadow .2s
+      figcaption
+        text-align center
+        font-style italic
+        font-size 12px
+        color #aaa
+        -webkit-font-smoothing antialiased
+        outline none
+      &.figure-focus
+        img
+          box-shadow 0 0 0 3px #57ad68
+
+    > *
+      margin-top 24px
+    > *:last-child
+      margin-bottom 24px
+
+    b, h1, h2, h3
+      font-weight 600
+    
+    h1
+      font-size 36px
+      line-height 40px
+    
+    h2
+      font-size 24px
+      line-height 34px
+    
+    p
+      min-height 20px
+
+    img
+      &.center
+        display block
+        margin 8px auto
+      &.left
+        margin 8px 8px 8px 0
+        float left
+      &.right
+        margin 8px 0 8px 8px
+        float right
+      &.video
+        display block
+        margin 8px auto
+        &.loading
+          content "загружаем обложку"
+
+.miniwyg-insert-popup
+  z-index 300
+  position absolute
+  background rgba(0, 0, 0, 0.8)
+  padding 4px 12px
+  color #ccc
+  font-size 24px
+  display none
+  opacity 0
+  transition opacity 0.2s
+  border-radius 2px
+  &.display
+    display block
+  &.show
+    opacity 1
+  span
+    transition color 0.2s
+    cursor pointer
+    &:hover
+      color #fff
+    + span
+      margin-left 4px
+
+.miniwyg-hidden-textarea
+  display none
+
+.miniwyg-panel
+  z-index 200
+  opacity 0
+  transition opacity .1s, transform .1s
+  transform-origin 50% 50%
+  transform scale(0.2) translateX(-50%)
+  display none
+  &.display
+    display block
+  &.show
+    opacity 1
+    transform scale(1) translateY(-42px) translateX(-50%)
+  background linear-gradient(to bottom, rgba(49,49,47,0.97), #262625)
+  color #fff
+  box-shadow 0 0 2px #262625
+  border 1px solid
+  border-color #262625 #1c1c1b #121211
+  border-radius 4px
+  position absolute
+  font-size 0
+  .panel-clip
+    background #262625
+    width 10px
+    height 10px
+    position absolute
+    bottom -5px
+    left calc(50% \- 5px)
+    transform rotate(45deg)
+    display block
+    border 1px solid #262625
+    box-shadow 0 0 2px #262625
+    z-index 199
+  span
+    display inline-block
+    text-align center
+    width 32px
+    line-height 32px
+    font-size 24px
+    cursor pointer
+    border-radius 2px
+    font-family medium
+    position relative
+    z-index 202
+    &.active
+      color #60d778
+    &.btn-bold:before
+      content "\f109"
+    &.btn-italic:before
+      content "\f12a"
+      font-size 26px
+    &.btn-h1, &.btn-h2
+      width 42px
+    &.btn-h1:before
+      content "\f11f"
+    &.btn-h2:before
+      content "\f120"
+    &.btn-align-left:before
+      content "\f125"
+    &.btn-align-center:before
+      content "\f124"
+    &.btn-remove:before
+      content "\f136"

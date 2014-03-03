@@ -1,0 +1,14 @@
+{
+  "name": "gulp-gulp",
+  "version": "0.0.1",
+  "devDependencies": {
+    "es6ify": "~0.4.8",
+    "gulp-autoprefixer": "0.0.6",
+    "gulp": "~3.5.2",
+    "gulp-haml": "0.0.8",
+    "gulp-connect": "~1.0.5",
+    "gulp-stylus": "0.0.13",
+    "gulp-browserify": "~0.4.6",
+    "gulp-plumber": "~0.5.6"
+  }
+}
