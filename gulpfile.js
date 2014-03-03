@@ -8,7 +8,8 @@ var gulp = require("gulp"),
   plumber = require("gulp-plumber"),
   jshint = require("gulp-jshint"),
   cssmin = require("gulp-minify-css"),
-  rename = require("gulp-rename");
+  rename = require("gulp-rename"),
+  footer = require("gulp-footer");
 
 gulp.task("js", function() {
 
@@ -24,6 +25,7 @@ gulp.task("js", function() {
         max_line_len: 80
       }
     }))
+    .pipe(footer("\n"))
     .pipe(gulp.dest("build"));
 
   gulp.src("src/miniwyg-pure.js")
@@ -31,6 +33,7 @@ gulp.task("js", function() {
     .pipe(browserify({
       debug: true
     }))
+    .pipe(footer("\n"))
     .pipe(rename("miniwyg-pure-debug.js"))
     .pipe(gulp.dest("build"))
     .pipe(connect.reload());
