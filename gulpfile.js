@@ -1,42 +1,65 @@
 var gulp = require("gulp"),
-    connect = require("gulp-connect"),
-    browserify = require("gulp-browserify"),
-    es6ify = require("es6ify"),
-    stylus = require("gulp-stylus"),
-    autoprefixer = require("gulp-autoprefixer"),
-    haml = require("gulp-haml"),
-    plumber = require("gulp-plumber");
+  connect = require("gulp-connect"),
+  browserify = require("gulp-browserify"),
+  stylus = require("gulp-stylus"),
+  autoprefixer = require("gulp-autoprefixer"),
+  haml = require("gulp-haml"),
+  uglify = require("gulp-uglify"),
+  plumber = require("gulp-plumber"),
+  jshint = require("gulp-jshint"),
+  cssmin = require("gulp-minify-css"),
+  rename = require("gulp-rename");
 
 gulp.task("js", function() {
-  gulp.src("src/*.js")
-      .pipe(plumber())
-      .pipe(browserify({
-        transform: ["es6ify"],
-      }))
-      .pipe(gulp.dest("build"))
-      .pipe(connect.reload())
+
+  gulp.src("src/**/*.js")
+    .pipe(jshint())
+    .pipe(jshint.reporter("default"));
+
+  gulp.src("src/miniwyg-pure.js")
+    .pipe(plumber())
+    .pipe(browserify())
+    .pipe(uglify({
+      output: {
+        max_line_len: 80
+      }
+    }))
+    .pipe(gulp.dest("build"));
+
+  gulp.src("src/miniwyg-pure.js")
+    .pipe(plumber())
+    .pipe(browserify({
+      debug: true
+    }))
+    .pipe(rename("miniwyg-pure-debug.js"))
+    .pipe(gulp.dest("build"))
+    .pipe(connect.reload());
+
 });
 
 gulp.task("stylus", function() {
   gulp.src("src/*.styl")
-      .pipe(plumber())
-      .pipe(stylus({use: ["nib"]}))
-      .pipe(autoprefixer())
-      .pipe(gulp.dest("build"))
-      .pipe(connect.reload());
+    .pipe(plumber())
+    .pipe(stylus({
+      use: ["nib"]
+    }))
+    .pipe(autoprefixer())
+    .pipe(cssmin())
+    .pipe(gulp.dest("build"))
+    .pipe(connect.reload());
 });
 
 gulp.task("haml", function() {
   gulp.src("src/**/*.haml")
-      .pipe(plumber())
-      .pipe(haml())
-      .pipe(gulp.dest("build"))
-      .pipe(connect.reload());
+    .pipe(plumber())
+    .pipe(haml())
+    .pipe(gulp.dest("build"))
+    .pipe(connect.reload());
 });
 
 gulp.task("fonts", function() {
   gulp.src("src/fonts/*.*")
-      .pipe(gulp.dest("build/fonts"));
+    .pipe(gulp.dest("build/fonts"));
 });
 
 gulp.task("connect", connect.server({

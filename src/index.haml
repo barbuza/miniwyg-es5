@@ -3,7 +3,6 @@
   %head
     %meta( charset="utf-8" )
     %link( rel="stylesheet" href="miniwyg.css" )
-    %script( src="traceur-runtime.js" )
   %body
     %form
       %textarea#editor( name="html" )
@@ -16,4 +15,6 @@
           %img( src="http://pit.dirty.ru/lepro/2/2014/02/27/203130-76cf19e7865e75c4ba4b6360afc0e9b7.jpg" )
           %figcaption( contenteditable="true" ) подписи к картинкам
         %p ребята из <b>medium</b> весьма озадачены
-    %script( src="miniwyg.js" )
+    %script( src="miniwyg-pure-debug.js" )
+    :javascript
+      new window.Miniwyg(document.getElementById("editor"));
